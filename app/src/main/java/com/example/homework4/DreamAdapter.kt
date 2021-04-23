@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 class DreamAdapter (private val dataset: List<Dream>) : RecyclerView.Adapter<DreamAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(private val view: View) :RecyclerView.ViewHolder(view){
-        val textViewName: TextView=view.findViewById(R.id.textView_name)
+        val textViewName: TextView=view.findViewById(R.id.textView_title)
         val textViewId: TextView=view.findViewById(R.id.textView_id)
         val constraintLayoutDream: ConstraintLayout = view.findViewById(R.id.constraintLayout_dream)
     }

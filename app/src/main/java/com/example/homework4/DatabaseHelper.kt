@@ -57,7 +57,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         if (resultSet.moveToFirst()){
             do{
                 dreams.add( Dream (
-                    resultSet.getLong(0),
+                    //resultSet.getLong(0),
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
@@ -105,9 +105,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     fun getNewest() : Dream{
         val dreams=getAll()
         var x:Long = 0
-        for (dream in dreams){
-            if (dream.id>x) x=dream.id
-        }
+        //for (dream in dreams){
+        //    if (dream.id>x) x=dream.id
+        //}
         return getDream(x)
     }
 
@@ -121,7 +121,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         if (resultSet.moveToFirst()){
             do{
                 dreams.add( Dream (
-                    resultSet.getLong(0),
+                    //resultSet.getLong(0),
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
