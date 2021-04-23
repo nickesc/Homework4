@@ -1,6 +1,8 @@
 package com.example.homework4
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +10,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.Job
 
-class DreamListAdapter() : ListAdapter<Dream, DreamListAdapter.DreamViewHolder> (DreamComparator()){
+class DreamListAdapter(theContext: Context) : ListAdapter<Dream, DreamListAdapter.DreamViewHolder> (DreamComparator()){
     class DreamViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
         val textViewTitle: TextView =itemView.findViewById(R.id.textView_title)
         val textViewId: TextView =itemView.findViewById(R.id.textView_id)
@@ -24,9 +28,12 @@ class DreamListAdapter() : ListAdapter<Dream, DreamListAdapter.DreamViewHolder> 
             textView.text=""+text
         }
 
-        fun bindClick(dream:Int, constraintLayout: ConstraintLayout){
+        fun bindClick(context: Context, dream:Dream, constraintLayout: ConstraintLayout){
             constraintLayout.setOnClickListener{
-                Log.d("help", "" + dream)
+                Log.d("help", "" + dream.emotion+ " " + dream.content + " " + dream.reflection)
+                var intent = Intent(context, DetailsActivity::class.java)
+                intent.putExtra("id", dream.id)
+                context.startActivity(intent)
             }
         }
 
@@ -59,7 +66,7 @@ class DreamListAdapter() : ListAdapter<Dream, DreamListAdapter.DreamViewHolder> 
         val currentDream=getItem(position)
         holder.bindText(currentDream.title, holder.textViewTitle)
         holder.bindText(currentDream.id, holder.textViewId)
-        holder.bindClick(currentDream.id, holder.constraintLayoutDream)
+        holder.bindClick(holder.itemView.context, currentDream, holder.constraintLayoutDream)
 
     }
 }

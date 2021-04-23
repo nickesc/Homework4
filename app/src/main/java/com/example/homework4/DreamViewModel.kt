@@ -1,16 +1,21 @@
 package com.example.homework4
 
 import androidx.lifecycle.*
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
 class DreamViewModel (private val repository: DreamRepository) : ViewModel(){
     val allDreams : LiveData<List<Dream>> = repository.allDreams.asLiveData()
 
-
-    fun getDream(id:Int)=viewModelScope.launch{
-        repository.getDream(id)
+    fun getDream(id:Int):LiveData<Dream> {
+        val result = MutableLiveData<Dream>()
+        viewModelScope.launch {
+            result.postValue(repository.getDream(id))
+        }
+        return result
     }
+
 
     fun addDream(dream: Dream)=viewModelScope.launch {
         repository.addDream(dream)

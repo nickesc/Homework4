@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         buttonAdd=findViewById(R.id.button_add)
         recyclerViewDreams=findViewById(R.id.recyclerView_dreams)
 
-        val adapter=DreamListAdapter()
+        val adapter=DreamListAdapter(this)
         recyclerViewDreams.adapter=adapter
         recyclerViewDreams.layoutManager=LinearLayoutManager(this)
 
@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonAdd.setOnClickListener {
             var intent = Intent(this@MainActivity, AddActivity::class.java)
+            //intent.putExtra("update", 4)
             startActivity(intent)
         }
 
