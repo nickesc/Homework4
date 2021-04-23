@@ -13,6 +13,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
+        android:focusable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:capitalize="words"
             android:fontFamily="sans-serif-light"
             android:hint="Dream title"
             android:inputType="textAutoComplete"
@@ -38,11 +40,12 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="10dp"
-            android:background="#EFEFEF"
+            android:background="#EBEBEB"
             android:ems="10"
             android:gravity="fill_horizontal"
             android:hint="Dream content"
             android:inputType="textMultiLine"
+            android:padding="10dp"
             app:layout_constraintBottom_toTopOf="@id/edit_reflection"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,24 +60,52 @@
             android:ems="10"
             android:gravity="clip_horizontal"
             android:hint="Dream reflection"
+            android:imeOptions="actionUnspecified"
             android:inputType="textMultiLine"
-            app:layout_constraintBottom_toTopOf="@id/spinner_emotion"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_content" />
 
-        <Spinner
-            android:id="@+id/spinner_emotion"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#F7F7F7"
-            android:entries="@array/emotion_array"
-            app:layout_constraintBottom_toTopOf="@id/button_save"
+            android:focusable="false"
+            app:layout_constraintBottom_toTopOf="@+id/button_save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_reflection">
+            app:layout_constraintTop_toBottomOf="@+id/edit_reflection">
 
-        </Spinner>
+            <Spinner
+                android:id="@+id/spinner_emotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#F7F7F7"
+                android:entries="@array/emotion_array"
+                android:focusable="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </Spinner>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:focusable="false"
+                android:text="Emotion:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/spinner_emotion"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/button_save"
@@ -82,11 +113,13 @@
             android:layout_height="wrap_content"
 
             android:layout_margin="16dp"
+            android:layout_marginTop="1dp"
+            android:focusable="false"
             android:text="Save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_emotion" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

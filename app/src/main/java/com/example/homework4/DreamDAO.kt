@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DreamDAO {
-    //dlksfja
 
     @Query ("SELECT * FROM dream_table ORDER BY id ASC")
     fun getAll() : Flow<List<Dream>>

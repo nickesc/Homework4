@@ -27,7 +27,6 @@ class DreamAdapter (private val dataset: List<Dream>) : RecyclerView.Adapter<Dre
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         var dream:Dream = dataset[position]
-        //dream.clicked=false
         holder.textViewName.text=dream.title
         holder.textViewId.text=""+dream.id
         holder.constraintLayoutDream.setOnClickListener{
